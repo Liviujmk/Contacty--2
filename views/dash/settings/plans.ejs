@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLANSSSSSS</title>
+    <%- include('../../layouts/publicFiles') %>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <%- include('../../layouts/sidebar') %>
+    <section class="home-section">
+        <section class="dash-main section">
+          <div class="main-content overflow-y--scroll">
+            <div class="content-grid">
+              <div class="container full-width">
+                <div class="container-grid">
+                  <div class="container-content">
+                    <% if(user.plan.isActive === true) { %>
+                        <p>Super.  <b><%= user.plan.title %></b> plan is active</p>
+                    <% } %>
+                        Buy a plan
+                        <% if(user.trial.status === 'expired' && (user.plan.isActive === false || user.activePlan === null)) { %>
+                            <form action="/<%= user.username %>/settings/plans/basic" method="POST">
+                                <input type="hidden" name="priceId" value="price_1JJJAlB7xOd0avEgxZrTkHy7"/>
+                                <button type="submit">Upgrade to basic plan</button>
+                            </form>
+                            <br>
+                            <br>
+                            <form action="/<%= user.username %>/settings/plans/plus" method="POST">
+                                <input type="hidden" name="priceId" value="price_1JJJBjB7xOd0avEgT0TF9hri"/>
+                                <button type="submit">Upgrade to plus plan</button>
+                            </form>
+                            <br>
+                            <br>
+                        <% } else if(user.plan.title === 'plus') { %>
+                            <form action="/<%= user.username %>/settings/plans/basic" method="POST">
+                                <input type="hidden" name="priceId" value="price_1JJJAlB7xOd0avEgxZrTkHy7"/>
+                                <button type="submit">Downgrade to basic plan</button>
+                            </form>
+                            <br>
+                            <br>
+                        <% } else { %>
+                            <form action="/<%= user.username %>/settings/plans/plus" method="POST">
+                                <input type="hidden" name="priceId" value="price_1JJJBjB7xOd0avEgT0TF9hri"/>
+                                <button type="submit">Upgrade to plus plan</button>
+                            </form>
+                            <br>
+                            <br>
+                
+                        <% } %>
+                    
+                    <br>
+                
+                    <a href="/<%= user.username %>/settings/billings">Check billings</a>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </section>
+</body>
+</html>

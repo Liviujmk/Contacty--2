@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <%- include('../../layouts/publicFiles') %>
+</head>
+<body>
+    <%- include('../../layouts/sidebar') %>
+    <section class="home-section">
+        <section class="dash-main section">
+          <div class="main-content overflow-y--scroll">
+            <div class="content-grid">
+              <div class="container full-width">
+                <div class="container-grid">
+                  <div class="container-content">
+                    <h2>Your messages</h2>
+                    <div class="table">
+                        <div class="row table-heading">
+                            <span>From</span>
+                            <span>Email</span>
+                            <span>Created date</span>
+                            <span></span>
+                        </div>
+                        <% form.messages.forEach(msg => { %>
+                          <div class="row row-caption">
+                            <div class="row-column">
+                              <span><%= msg.clientSenderName %></span>
+                            </div>
+                            <div class="row-column">
+                              <span><%= msg.clientSenderEmail %></span>
+                            </div>
+                            <div class="row-column">
+                              <span><%= msg.createdAt.toLocaleDateString() %></span>
+                            </div>
+                            <div class="row-column">
+                              <a href="" class="button btn-icon">
+                                <span class="material-symbols-outlined">
+                                  arrow_right
+                                </span>
+                                <span class="btn-text">View</span>
+                              </a>
+                            </div>
+                          </div>
+                        <% }); %> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </section>
+</body>
+</html>

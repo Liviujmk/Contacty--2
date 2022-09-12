@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All messages</title>
+</head>
+<body>
+    <!-- CSS Code: Place this code in the document's head (between the 'head' tags) -->
+    <style>
+        table.GeneratedTable {
+            width: 100%;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            border-width: 2px;
+            border-color: #ffcc00;
+            border-style: solid;
+            color: #000000;
+        }
+        
+        table.GeneratedTable td, table.GeneratedTable th {
+            border-width: 2px;
+            border-color: #ffcc00;
+            border-style: solid;
+            padding: 3px;
+        }
+        
+        table.GeneratedTable thead {
+            background-color: #ffcc00;
+        }
+    </style>
+    
+    <!-- HTML Code: Place this code in the document's body (between the 'body' tags) where the table should appear -->
+    <table class="GeneratedTable">
+      <thead>
+        <tr>
+          <th>Text</th>
+          <th>Sender</th>
+          <th>Form</th>
+          <th>Sent at</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% msgs.forEach(msg => {  %>
+            <tr>
+                <td><%= msg.text %> </td>
+                <td><%= msg.sender %></td>
+                <td><%= msg.formSender %></td>
+                <td><%= msg.createdAt %></td>
+            </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <!-- Codes by Quackit.com -->
+    
+    
+</body>
+</html>

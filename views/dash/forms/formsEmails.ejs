@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send message</title>
+</head>
+<body>
+    <% if(msgs.length === 0){
+        %>
+        <p>No emails</p>
+        <%
+    } %>
+
+    <% msgs.forEach(msg => { if(msg.formSender === form.title){  %>
+        <h3> All emails / customers </h3>
+        <br>
+        <a href="/<%= user.username %>/dashboard/forms/view/<%= form.title %>/messages/<%= msg.text %>"><p><%= msg.sender %></p></a>
+    <% }}) %>
+    
+</body>
+</html>

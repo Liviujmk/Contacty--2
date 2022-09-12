@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send message</title>
+    <%- include('../../layouts/publicFiles') %>
+</head>
+<body>
+    <%- include('../../layouts/sidebar') %>
+    <section class="home-section">
+        <section class="dash-main section">
+          <div class="main-content overflow-y--scroll">
+            <div class="content-grid">
+              <div class="container full-width">
+                <div class="container-grid">
+                  <div class="container-content">
+                    <p>Your msg is <h3> <%= msg.text %></h3></p>
+                    You received this message from: <b><%= msg.clientSenderEmail %></b>
+                    <br>
+                    <a href="/<%= user.username %>/dashboard/forms/view/<%= form.title %>/messages/<%= msg.id %>/send">Reply to this message</a>    
+                    <br>
+                    <br>
+                    <br>
+                    <a href="/<%= user.username %>/dashboard/forms/view/<%= form.title %>/messages/<%= msg.id %>/delete">Delete message</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </section>
+</body>
+</html>

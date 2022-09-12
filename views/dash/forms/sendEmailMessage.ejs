@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send message</title>
+</head>
+<body>
+    <h3>Send message to <%= msg.clientSenderEmail %> </h3>
+    <form action="/<%= user.username %>/dashboard/forms/view/<%= form.title %>/messages/<%= msg.id %>/sendemail" method="POST">
+        <textarea name="sendMessage" id="sendMessage-field" cols="30" rows="10"></textarea>
+        <br>
+        <button type="submit">Send message</button>
+    </form>
+</body>
+</html>

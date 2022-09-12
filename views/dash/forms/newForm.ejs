@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create new form</title>
+    <%- include('../../layouts/publicFiles') %>
+</head>
+<body>
+    <%- include('../../layouts/sidebar') %>
+    <section class="home-section">
+        <section class="dash-main section">
+          <div class="main-content overflow-y--scroll">
+            <div class="content-grid">
+              <div class="container full-width bg1">
+                <div class="container-grid">
+                  <div class="container-content">
+                    <form action="/<%= user.username %>/dashboard/forms?_method=PUT" method="post">
+                        <label for="formTitle">Enter form title</label>
+                        <br>
+                        <input type="text" name="formTitle">
+                    </form>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+  </section>
+</body>
+</html>

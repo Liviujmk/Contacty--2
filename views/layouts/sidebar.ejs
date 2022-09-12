@@ -1,0 +1,84 @@
+<div class="sidebar open">
+    <div class="sidebar-content">
+      <div class="logo-details">
+        <i class="bx bxl-c-plus-plus icon"></i>
+        <div class="logo_name">CodingLab</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <!--<li>
+          <i class="bx bx-search"></i>
+          <input type="text" placeholder="Search..." />
+          <span class="tooltip">Search</span>
+        </li>-->
+        <li>
+          <a href="/<%= user.username %>/dashboard">
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+          <span class="tooltip">Dashboard</span>
+        </li>
+        <li>
+          <a href="/<%= user.username %>/dashboard/forms">
+            <i class="bx bx-user"></i>
+            <span class="links_name">Forms</span>
+          </a>
+          <span class="tooltip">Forms</span>
+        </li>
+        <li>
+          <a href="/<%= user.username %>/dashboard/messages">
+            <i class="bx bx-chat"></i>
+            <span class="links_name">Messages</span>
+          </a>
+          <span class="tooltip">Messages</span>
+        </li>
+        <li>
+          <a href="/<%= user.username %>/dashboard/analytics">
+            <i class="bx bx-pie-chart-alt-2"></i>
+            <span class="links_name">Analytics</span>
+          </a>
+          <span class="tooltip">Analytics</span>
+        </li>
+        <li>
+          <a href="/<%= user.username %>/dashboard/files">
+            <i class="bx bx-folder"></i>
+            <span class="links_name">File Manager</span>
+          </a>
+          <span class="tooltip">Files</span>
+        </li>
+        <div class="tag-category">
+          <p>Team</p>
+        </div>
+        <li>
+          <a href="/<%= user.username %>/dashboard/order">
+            <i class="bx bx-cart-alt"></i>
+            <span class="links_name">Order</span>
+          </a>
+          <span class="tooltip">Order</span>
+        </li>
+        <li>
+          <a href="/<%= user.username %>/dashboard/saved">
+            <i class="bx bx-heart"></i>
+            <span class="links_name">Saved</span>
+          </a>
+          <span class="tooltip">Saved</span>
+        </li>
+        <li>
+          <a href="/<%= user.username %>/settings/plans">
+            <i class="bx bx-cog"></i>
+            <span class="links_name">Setting</span>
+          </a>
+          <span class="tooltip">Setting</span>
+        </li>
+      </ul>
+      <ul class="nav-list-down">
+        <li>
+          <a href="/logout">
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Log out</span>
+          </a>
+          <span class="tooltip">Log out</span>
+        </li>
+      </ul>
+    </div>
+</div>
