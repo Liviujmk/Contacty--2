@@ -4,6 +4,7 @@
 :root {
   --main-bgColor: #8d8f91;
   --second-bgColor: #b3c9e278;
+  --delete-color: rgb(221, 21, 21);
   --main-textColor: #646a6e;
   --light-textColor: #9da1a3;
   --main-linkColor: #6c899c;
@@ -35,6 +36,11 @@ a {
   color: var(--main-linkColor)
 }
 
+button {
+  cursor: pointer;
+  background: none;
+}
+
 .button {
   padding: .5rem 1rem;
   border-radius: 5px;
@@ -42,9 +48,17 @@ a {
   text-decoration: none;
   color: var(--main-textColor);
 }
-
+.btn-small {
+  padding: .25rem .5rem;
+}
 .btn-icon {
   display: flex;
+}
+
+.btn-delete{
+  background-color: var(--delete-color);
+  color: #fff;
+  border: none;
 }
 
 span {
@@ -57,7 +71,7 @@ span.icon {
   font-size: 1.6rem;
 }
 span.btn-text {
-  font-size: 1.25rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
 }
@@ -339,15 +353,7 @@ span.btn-text {
   width: 50px;
   background: none;
 }
-.home-section{
-  position: relative;
-  top: 0;
-  left: 78px;
-  width: calc(100% - 78px);
-  transition: all 0.5s ease;
-  z-index: 2;
-  padding: 20px;
-}
+
 .sidebar.open ~ .home-section{
   left: 250px;
   width: calc(100% - 250px);
@@ -355,6 +361,15 @@ span.btn-text {
 
 .full-width {
   width: 100%;
+}
+.half-width{
+  width: 50%;
+}
+.quarter-width{
+  width: 25%;
+}
+.fifth-width{
+  width: 20%;
 }
 
 .main-content {
@@ -384,10 +399,24 @@ span.btn-text {
   /*background: var(--main-bgColor);*/
 }
 
+.home-section{
+  position: relative;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+  padding: 20px;
+}
+
+.home-section._404{
+  left: 0;
+  width: 100%;
+}
+
 .container {
   display: block;
   border-radius: 0.45rem;
-  border: .8px solid var(--light-border);
   margin-bottom: 2.5rem;
 }
 .container.blank {
@@ -397,6 +426,9 @@ span.btn-text {
   align-items: center;
   justify-content: center;
   margin: 0;
+}
+.blank-border {
+  border: 0.8px solid var(--light-border);
 }
 .container.bg1{
   background-color: var(--bg1);
@@ -440,6 +472,10 @@ span.btn-text {
   border-radius: .5rem;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+}
+
+.row-column {
+  max-width: 20%;
 }
 
 .table-heading {

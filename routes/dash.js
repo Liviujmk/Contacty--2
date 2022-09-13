@@ -17,6 +17,15 @@ const stripe = Stripe('sk_test_51JJIqEB7xOd0avEgcpHRiiczUzqqgaucUJfzaEMxb2jxybky
         |
        < >
 */
+router.get('/messages', async(req,res) => {
+    const user = req.user
+    const forms = user.forms
+    res.render('dash/forms/allMessages', {
+        user: user,
+        forms: forms
+    })
+})
+
 router.get('/forms', async (req,res) => {
     const forms = req.user.forms /*|| "no forms"*/
     res.render('dash/forms/forms', {
@@ -45,15 +54,7 @@ router.put('/forms', async (req,res, next) => {
     }
 })
 
-router.get('/forms/all-messages', async (req,res) => {
-    
-    
-    res.render('dash/forms/allMessages', {
-        user: req.user,
-        form: form,
-        msgs: msgs
-    })
-})
+
 
 router.get('/forms/view/:title', async (req,res) => {
     const allForm = req.user.forms
@@ -65,6 +66,17 @@ router.get('/forms/view/:title', async (req,res) => {
         user: req.user,
         limitMsg: limitMsg
     })
+})
+router.post('/forms/view/:title/deleteForm', async(req,res) => {
+    const allForm = req.user.forms
+    const form = allForm.find(form => form.title === req.params.title)
+    if(!form ){
+        res.status(404).render('layouts/404')
+    } else {
+        allForm.splice(allForm.indexOf(form), 1)
+        await req.user.save()
+        res.redirect('/' + req.user.username + '/dashboard/forms')
+    }
 })
 
 router.all('/forms/view/:title/*', async(req,res, next) => {
@@ -84,27 +96,6 @@ router.get('/forms/view/:title/all-emails', async (req,res) => {
         form: form,
         msgs: msgs
     })
-})
-
-
-
-router.get('/forms/view/:title/generate', async (req,res) => {
-    const allForm = req.user.forms
-    const form = allForm.find(form => form.title === req.params.title)
-    const content = 'Some content!'
-
-    fs.writeFile('test.txt', content, err => {
-    if (err) throw err
-    console.log('file created');
-    fs.readFile('test.txt', 'utf8' , (err, data) => {
-        if (err) {
-          console.error(err)
-          return
-        }
-        console.log(data)
-      })
-})
-    
 })
 
 /* USER FORM MESSAGES */
@@ -130,10 +121,10 @@ router.get('/forms/view/:title/messages', async(req,res) => {
 
 
 
-router.get('/forms/view/:title/messages/:msg', async(req,res) => {
+router.get('/forms/view/:title/messages/:msgId', async(req,res) => {
     const allForm = req.user.forms
     const form = allForm.find(form => form.title === req.params.title)
-    const msg = form.messages.find(msg => msg.id === req.params.msg)
+    const msg = form.messages.find(msg => msg.id === req.params.msgId)
     if( !msg || !form ){
         res.status(404).render('errors/404')
     } else {
@@ -147,10 +138,10 @@ router.get('/forms/view/:title/messages/:msg', async(req,res) => {
 
 
 
-router.get('/forms/view/:title/messages/:msg/delete', async(req,res) => {
+router.get('/forms/view/:title/messages/:msgId/delete', async(req,res) => {
     const allForm = req.user.forms
     const form = allForm.find(form => form.title === req.params.title)
-    const msg = form.messages.find(msg => msg.id === req.params.msg)
+    const msg = form.messages.find(msg => msg.id === req.params.msgId)
     if( !msg || !form ){
         res.status(404).render('errors/404')
     } else {
@@ -160,10 +151,10 @@ router.get('/forms/view/:title/messages/:msg/delete', async(req,res) => {
     }
 })
 
-router.get('/forms/view/:title/messages/:msg/send', async(req,res) => {
+router.get('/forms/view/:title/messages/:msgId/send', async(req,res) => {
     const allForm = req.user.forms
     const form = allForm.find(form => form.title === req.params.title)
-    const msg = form.messages.find(msg => msg.id === req.params.msg)
+    const msg = form.messages.find(msg => msg.id === req.params.msgId)
     if( !msg || !form ){
         res.status(404).render('errors/404')
     } else {
@@ -175,12 +166,12 @@ router.get('/forms/view/:title/messages/:msg/send', async(req,res) => {
     }
 })
 
-router.post('/forms/view/:title/messages/:msg/sendemail', async(req,res) => {
+router.post('/forms/view/:title/messages/:msgId/sendemail', async(req,res) => {
     const usernameParam = req.user.username
     
     const allForm = req.user.forms
     const form = allForm.find(form => form.title === req.params.title)
-    const msg = form.messages.find(msg => msg.id === req.params.msg)
+    const msg = form.messages.find(msg => msg.id === req.params.msgId)
     const settingsOptions = usernameParam.settingsOptions
     let sentMessage = req.body.sendMessage
 

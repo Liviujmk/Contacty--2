@@ -5,55 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All messages</title>
+    <%- include('../../layouts/publicFiles') %>
 </head>
 <body>
-    <!-- CSS Code: Place this code in the document's head (between the 'head' tags) -->
-    <style>
-        table.GeneratedTable {
-            width: 100%;
-            background-color: #ffffff;
-            border-collapse: collapse;
-            border-width: 2px;
-            border-color: #ffcc00;
-            border-style: solid;
-            color: #000000;
-        }
-        
-        table.GeneratedTable td, table.GeneratedTable th {
-            border-width: 2px;
-            border-color: #ffcc00;
-            border-style: solid;
-            padding: 3px;
-        }
-        
-        table.GeneratedTable thead {
-            background-color: #ffcc00;
-        }
-    </style>
-    
-    <!-- HTML Code: Place this code in the document's body (between the 'body' tags) where the table should appear -->
-    <table class="GeneratedTable">
-      <thead>
-        <tr>
-          <th>Text</th>
-          <th>Sender</th>
-          <th>Form</th>
-          <th>Sent at</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% msgs.forEach(msg => {  %>
-            <tr>
-                <td><%= msg.text %> </td>
-                <td><%= msg.sender %></td>
-                <td><%= msg.formSender %></td>
-                <td><%= msg.createdAt %></td>
-            </tr>
-        <% }) %>
-      </tbody>
-    </table>
-    <!-- Codes by Quackit.com -->
-    
-    
+  <%- include('../../layouts/sidebar') %>
+  <section class="home-section">
+    <section class="dash-main section">
+      <div class="main-content overflow-y--scroll">
+        <div class="content-grid">
+          <div class="container full-width">
+            <div class="container-grid">
+              <div class="container-content">
+                <h2>All your messages</h2>
+                <div class="table">
+                    <div class="row table-heading">
+                        <span>Sender</span>
+                        <span>Email</span>
+                        <span>Created date</span>
+                        <span></span>
+                    </div>
+                    <% forms.forEach(form => { %>
+                      <% form.messages.forEach(msg => { %>
+                        <div class="row row-caption">
+                          <div class="row-column fifth-width">
+                            <span><%= msg.clientSenderName %></span>
+                          </div>
+                          <div class="row-column fifth-width">
+                            <span><%= msg.clientSenderEmail %></span>
+                          </div>
+                          <div class="row-column fifth-width">
+                            <span><%= msg.createdAt.toLocaleDateString() %></span>
+                          </div>
+                          <div class="row-column">
+                            <a href="/<%= user.username %>/dashboard/forms/view/<%= form.title %>/messages/<%= msg.id %> " class="button btn-icon btn-small">
+                              <span class="material-symbols-outlined">
+                                arrow_right
+                              </span>
+                              <span class="btn-text">View</span>
+                            </a>
+                          </div>
+                        </div>
+                      <% }); %>
+                    <% }); %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</section>
 </body>
 </html>

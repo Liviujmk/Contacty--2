@@ -262,7 +262,9 @@ app.post('/register', async(req, res, next) => {
  */
 
 app.get('/*', (req,res) => {
-    res.status(404).render('errors/404')
+    res.status(404).render('layouts/404', {
+        homeUrl: '/'
+    })
 })
 
 

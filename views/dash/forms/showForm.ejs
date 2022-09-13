@@ -21,6 +21,9 @@
                     <% if(limitMsg != null) { %>
                         <h3><%= limitMsg %> You need to <a href="/<%= user.username %>/settings/plans">Upgrade</a></h3>
                     <% } %>
+                    <form action="/<%= user.username %>/dashboard/forms/view/<%= form.title %>/deleteForm" method="post">
+                      <button class="button btn-delete">Delete form</button>
+                    </form>
                   </div>
                 </div>
               </div>

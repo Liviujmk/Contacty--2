@@ -8,35 +8,35 @@
     <%- include('../../layouts/publicFiles') %>
 </head>
 <body>
-    <%- include('../../layouts/sidebar') %>
-    <section class="home-section">
+  <%- include('../../layouts/sidebar') %>
+  <section class="home-section">
         <section class="dash-main section">
-          <div class="main-content overflow-y--scroll">
+          <div class="main-content blank-border overflow-y--scroll">
             <div class="content-grid">
               <div class="container full-width">
                 <div class="container-grid">
                   <div class="container-content">
-                    <h2>Your messages</h2>
+                    <h2><%= form.title %>'s  messages</h2>
                     <div class="table">
                         <div class="row table-heading">
-                            <span>From</span>
+                            <span>Sender</span>
                             <span>Email</span>
                             <span>Created date</span>
                             <span></span>
                         </div>
                         <% form.messages.forEach(msg => { %>
                           <div class="row row-caption">
-                            <div class="row-column">
+                            <div class="row-column fifth-width">
                               <span><%= msg.clientSenderName %></span>
                             </div>
-                            <div class="row-column">
+                            <div class="row-column fifth-width">
                               <span><%= msg.clientSenderEmail %></span>
                             </div>
-                            <div class="row-column">
+                            <div class="row-column fifth-width">
                               <span><%= msg.createdAt.toLocaleDateString() %></span>
                             </div>
-                            <div class="row-column">
-                              <a href="" class="button btn-icon">
+                            <div class="row-column ">
+                              <a href="/<%= user.username %>/dashboard/forms/view/<%= form.title %>/messages/<%= msg.id %> " class="button btn-icon btn-small">
                                 <span class="material-symbols-outlined">
                                   arrow_right
                                 </span>
@@ -52,6 +52,6 @@
             </div>
           </div>
         </section>
-    </section>
+  </section>
 </body>
 </html>

@@ -77,6 +77,11 @@ router.get('/login-failure', (req, res, next) => {
 
 
 /*----   USERNAME BASIC ROUTES   ------*/
+/*router.get('/:username/dashboard/*', (req,res) => {
+    res.status(404).render('layouts/404', {
+        homeUrl: `/${req.params.username}/dashboard`
+    })
+})*/
 
 router.get('/:username/dashboard', async(req, res, next) => {
     // This is how you check if a user is authenticated and protect a route.  You could turn this into a custom middleware to make it less redundant
@@ -266,6 +271,7 @@ router.all('/:username/dashboard/*', async(req, res, next) => {
         res.send('<h1>You are not authenticated</h1><p><a href="/login">Login</a></p>');
     }
 });
+
 
 /*router.all('/:username/dashboard/forms/*', async(req, res, next) => {
     const msgCount = await mongoose.model(`${req.user.username}dbs`, InputSchema).countDocuments({});
