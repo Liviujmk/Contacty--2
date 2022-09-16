@@ -21,7 +21,7 @@ router.get('/logout', function(req, res, next) {
     const username = req.user.username
     req.logout(function(err) {
         if (err) { return next(err); }
-        res.redirect(`/login`);
+        res.redirect(`/#logIn`);
     });
 });
 // When you visit http://localhost:3100/login, you will see "Login Page"
@@ -85,30 +85,35 @@ router.get('/login-failure', (req, res, next) => {
 
 router.get('/:username/dashboard', async(req, res, next) => {
     // This is how you check if a user is authenticated and protect a route.  You could turn this into a custom middleware to make it less redundant
-    if (req.isAuthenticated() && (req.params.username === req.user.username )) {
+    const userParam = await User.findOne({'username': req.params.username})
+    console.log(userParam);
+    if(!userParam) {res.redirect('/register')}
+    else {
+        if (req.isAuthenticated() && (req.params.username === req.user.username )) {
         
-        var user = req.user
-        var one_day = 1000 * 60 * 60 * 24;
-        var cd = new Date()
-        var trial = user.trial
-
-        if (cd.getTime() >= trial.start.getTime() && cd.getTime() < trial.end.getTime()) {
-            if ((trial.end.getTime() - cd.getTime()) < one_day)
-                freeTrialEndDate = `${Math.ceil((trial.end.getTime() - cd.getTime()) / (one_day / 24) )} hour(s) left!`
-            else
-                freeTrialEndDate = `${Math.ceil((trial.end.getTime() - cd.getTime()) / one_day)} day(s) left! `
-        } else if ((trial.end.getTime() - cd.getTime()) <= 0) {
-                // add the if that checks if the user has paid the subscription after the trial period else clg 'trial expired'
-                freeTrialEndDate = "Trial expired"
-                await user.updateOne({_id: user._id}, {$set: {trial: {status: "expired"}}})
+            var user = req.user
+            var one_day = 1000 * 60 * 60 * 24;
+            var cd = new Date()
+            var trial = user.trial
+    
+            if (cd.getTime() >= trial.start.getTime() && cd.getTime() < trial.end.getTime()) {
+                if ((trial.end.getTime() - cd.getTime()) < one_day)
+                    freeTrialEndDate = `${Math.ceil((trial.end.getTime() - cd.getTime()) / (one_day / 24) )} hour(s) left!`
+                else
+                    freeTrialEndDate = `${Math.ceil((trial.end.getTime() - cd.getTime()) / one_day)} day(s) left! `
+            } else if ((trial.end.getTime() - cd.getTime()) <= 0) {
+                    // add the if that checks if the user has paid the subscription after the trial period else clg 'trial expired'
+                    freeTrialEndDate = "Trial expired"
+                    await user.updateOne({_id: user._id}, {$set: {trial: {status: "expired"}}})
+            }
+            console.log((trial.end.getTime() - cd.getTime()) / one_day);
+            res.render('dashboard',{
+                user: user,
+                freeTrialEndDate: freeTrialEndDate
+            });
+        } else {
+            res.send('<h1>You are not authenticated</h1><p><a href="/login">Login</a></p>');
         }
-        console.log((trial.end.getTime() - cd.getTime()) / one_day);
-        res.render('dashboard',{
-            user: user,
-            freeTrialEndDate: freeTrialEndDate
-        });
-    } else {
-        res.send('<h1>You are not authenticated</h1><p><a href="/login">Login</a></p>');
     }
 });
 
@@ -131,36 +136,40 @@ router.post('/:username/dashboard/forms/view/:title/messages', async (req,res, n
 })
 
 router.all('/:username/dashboard', async(req, res, next) => {
-    if (req.isAuthenticated() && (req.params.username === req.user.username )) {
-        var user = req.user
+    const userParam = await User.findOne({'email': req.params.username})
+    console.log(userParam);
+    if(!userParam) {res.redirect('/register')}
+    else {
+        if (req.isAuthenticated() && (req.params.username === req.user.username )) {
+            var user = req.user
 
-        var one_day = 1000 * 60 * 60 * 24;
-        var cd = new Date()
+            var one_day = 1000 * 60 * 60 * 24;
+            var cd = new Date()
 
-        var trial = user.trial
+            var trial = user.trial
 
-        if (cd.getTime() >= trial.start.getTime() && cd.getTime() < trial.end.getTime()) {
-            if ((trial.end.getTime() - cd.getTime()) < one_day)
-                freeTrialEndDate = `${Math.ceil((trial.end.getTime() - cd.getTime()) / (one_day / 24) )} hour(s) left!`
-            else
-                freeTrialEndDate = `${Math.ceil((trial.end.getTime() - cd.getTime()) / one_day)} day(s) left! `
-            return next()
-        } else if ((trial.end.getTime() - cd.getTime()) <= 0) {
-                // add the if that checks if the user has paid the subscription after the trial period else clg 'trial expired'
-                freeTrialEndDate = "Trial expired"
-                //await user.updateOne({_id: user._id}, {$set: {trial: {status: "expired"}}})
-                user.trial.status = "expired"
-                await user.save();
-                //res.send('upgrade in order to continue')
+            if (cd.getTime() >= trial.start.getTime() && cd.getTime() < trial.end.getTime()) {
+                if ((trial.end.getTime() - cd.getTime()) < one_day)
+                    freeTrialEndDate = `${Math.ceil((trial.end.getTime() - cd.getTime()) / (one_day / 24) )} hour(s) left!`
+                else
+                    freeTrialEndDate = `${Math.ceil((trial.end.getTime() - cd.getTime()) / one_day)} day(s) left! `
                 return next()
+            } else if ((trial.end.getTime() - cd.getTime()) <= 0) {
+                    // add the if that checks if the user has paid the subscription after the trial period else clg 'trial expired'
+                    freeTrialEndDate = "Trial expired"
+                    //await user.updateOne({_id: user._id}, {$set: {trial: {status: "expired"}}})
+                    user.trial.status = "expired"
+                    await user.save();
+                    //res.send('upgrade in order to continue')
+                    return next()
+            }
+        } else {
+            res.send('<h1>You are not authenticated</h1><p><a href="/login">Login</a></p>');
         }
-    } else {
-        res.send('<h1>You are not authenticated</h1><p><a href="/login">Login</a></p>');
     }
 });
 
 router.get('/:username/settings/plans', (req,res) => {
-
     res.render('dash/settings/plans', {
         user: req.user
     })
@@ -196,7 +205,6 @@ router.get('/:username/settings/plans/:title/success', async(req,res) => {
 })
 
 router.get('/:username/settings/billings', async(req,res) => {
-    
     res.render('dash/settings/billings', {
         user: req.user
     })
@@ -259,6 +267,7 @@ router.post('/:username/settings/plans/plus', async(req,res) => {
     res.redirect(303, session.url)
 
 })
+
 
 router.all('/:username/dashboard/*', async(req, res, next) => {
     if (req.isAuthenticated() && (req.params.username === req.user.username )) {

@@ -5,8 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login syst</title>
+    <link rel="stylesheet" href="/public/css/main.css">
 </head>
 <body>
-    <h1>Home</h1><p>Please <a href="/register">register</a> or <a href="/login">login</a> or <a href="/pricing">pricing</a> </p>
+    <main id="homePage">
+        <section class="section-hero">
+            <div class="grid">
+                <div class="container">
+                    <div class="container-item heading">
+                        <h1>Collect form submission in just a few seconds</h1>
+                    </div>
+                    <div class="container-item button-group">
+                        <a href="#reg" class="button btn-main">Register</a>
+                        <span>or</span>
+                        <a href="#logIn" class="button btn-main">Log In</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-forms">
+            <div class="grid">
+                <div class="container">
+                    <div class="container-item forms">
+                        <h3 id="#reg">Register</h3>
+                        <form action="" method="post">
+                            <input type="text" name="companyName" placeholder="Enter company name">
+                            <input type="text" name="username" placeholder="Enter an username">
+                            <input type="email" name="email" placeholder="Enter email">
+                            <input type="password" name="password" placeholder="Enter password">
+                            <input type="submit" class="btn-submit btn-main" value="Register">
+                        </form>
+                    </div>
+                    <div class="container-item forms">
+                        <h3 id="logIn">Login</h3>
+                        <form action="/login" method="post">
+                            <input type="email" name="username" placeholder="Enter email">
+                            <input type="password" name="password" placeholder="Enter password">
+                            <input type="submit" class="btn-submit btn-main" value="Log in">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

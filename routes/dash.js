@@ -17,20 +17,92 @@ const stripe = Stripe('sk_test_51JJIqEB7xOd0avEgcpHRiiczUzqqgaucUJfzaEMxb2jxybky
         |
        < >
 */
-router.get('/messages', async(req,res) => {
+router.get('/customers', async(req,res) => {
+    const allCustomers = []
     const user = req.user
     const forms = user.forms
-    res.render('dash/forms/allMessages', {
-        user: user,
-        forms: forms
+    forms.forEach(form => {
+        form.messages.forEach(msg => {
+            if(msg.clientSenderEmail != user.username)
+                allCustomers.push({name: msg.clientSenderName, email: msg.clientSenderEmail})
+        })
     })
+    allCustomers.filter((item,index) => allCustomers.indexOf(item) === index)
+    res.render('dash/forms/allCustomers',{
+        user: user,
+        forms: forms,
+        allCustomers,
+        nullMessage: "You don't have any customer yet, wait till one appears",
+        createLink: `/${req.user.username}/dashboard/`,
+        buttonMsg: 'Go home',
+    })
+})
+
+router.get('/messages', (req,res) => {
+    const user = req.user
+    const forms = user.forms
+    const allMessages = []
+    forms.forEach(form => {
+        form.messages.forEach(message => {
+            allMessages.push(message)
+        })
+    })
+    res.render('dash/forms/allMessages', {
+        user,
+        forms,
+        allMessages,
+        nullMessage: "You haven't received any message yet",
+        createLink: `/${req.user.username}/dashboard/messages/newMessage`,
+        buttonMsg: 'Create draft message',
+    })
+})
+
+router.get('/messages/newMessage', (req,res) => {
+    const user = req.user
+    const forms = user.forms
+    res.render('dash/forms/newMessage', {
+        user,
+        forms,
+        createLink: `/${req.user.username}/dashboard/messages/draft`,
+        buttonMsg: 'Create',
+    })
+})
+
+router.put('/messages/draft', async(req,res) => {
+    const allForm = req.user.forms
+    let form = ''
+    if(!(allForm.find(form => form.title === 'formForDrafts'))) {
+        req.user.forms.push({title: 'formForDrafts'})
+        await req.user.save()
+        form = allForm.find(form => form.title === 'formForDrafts')
+    } else {
+        form = allForm.find(form => form.title === 'formForDrafts')
+    }
+    form.messages.push(
+        {
+            text: req.body.messageTitle,
+            clientSenderName: "You",
+            clientSenderEmail: req.user.username,
+            formTarget: form.title
+        }
+    )
+    try {
+        await req.user.save();
+        res.redirect(`/${req.user.username}/dashboard/forms/view/formForDrafts/messages`)
+    } catch (e) {
+        res.redirect(`/${req.user.username}/dashboard/messages/newMessage`)
+        console.error(e);
+    }
 })
 
 router.get('/forms', async (req,res) => {
     const forms = req.user.forms /*|| "no forms"*/
     res.render('dash/forms/forms', {
         user: req.user,
-        forms: forms
+        forms: forms,
+        nullMessage: "You haven't created any form yet",
+        buttonMsg: 'Create form',
+        createLink: `/${req.user.username}/dashboard/forms/new`
     })
 })
 
@@ -108,18 +180,52 @@ router.get('/forms/view/:title/all-emails', async (req,res) => {
 
 router.get('/forms/view/:title/messages', async(req,res) => {
     const allForm = req.user.forms
-    const form = allForm.find(form => form.title === req.params.title)
+    const form = await allForm.find(form => form.title === req.params.title)
     if( !form ){ 
         res.status(404).render('errors/404')
     } else {
         res.render('dash/forms/messages', {
+            user: req.user,
+            form: form,
+            nullMessage: "You haven't received any message from this form yet",
+            buttonMsg: 'Create message',
+            createLink: `/${req.user.username}/dashboard/forms/view/${form.title}/messages/newFormMessage`
+        })
+    }
+})
+
+router.get('/forms/view/:title/messages/newFormMessage', async(req,res) => {
+    const allForm = req.user.forms
+    const form = await allForm.find(form => form.title === req.params.title)
+    if( !form ){ 
+        res.status(404).render('errors/404')
+    } else {
+        res.render('dash/forms/newFormMessage', {
             user: req.user,
             form: form
         })
     }
 })
 
-
+router.post('/forms/view/:title/messages/draft', async(req,res) => {
+    const allForm = req.user.forms
+    const form = allForm.find(form => form.title === req.params.title)
+    form.messages.push(
+        {
+            text: req.body.messageTitle,
+            clientSenderName: "You",
+            clientSenderEmail: req.user.username,
+            formTarget: form.title
+        }
+    )
+    try {
+        await req.user.save();
+        res.redirect(`/${req.user.username}/dashboard/forms/view/${form.title}/messages`)
+    } catch (e) {
+        res.redirect(`/${req.user.username}/dashboard/forms/view/${form.title}/messages/newFormMessage`)
+        console.error(e);
+    }
+})
 
 router.get('/forms/view/:title/messages/:msgId', async(req,res) => {
     const allForm = req.user.forms
@@ -179,6 +285,12 @@ router.post('/forms/view/:title/messages/:msgId/sendemail', async(req,res) => {
         res.status(404).render('errors/404')
     } else {
         const userEmailParam = msg.clientSenderEmail
+        try {
+            form.messages.push({text: sentMessage, clientSenderName: "You", clientSenderEmail: usernameParam, formTarget: form.title})
+            await req.user.save()
+        } catch (error) {
+            console.error(error);
+        }
         let transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 465,
@@ -209,7 +321,7 @@ router.post('/forms/view/:title/messages/:msgId/sendemail', async(req,res) => {
             console.log('Message sent successfully!');
         });
 
-        res.send(`Message sent successfully! ${sentMessage}`)
+        res.redirect('/' + req.user.username + '/dashboard/forms/view/' + form.title + '/messages')
     }
 })
 

@@ -19,11 +19,44 @@
               <div class="container full-width">
                 <div class="container-grid">
                   <div class="container-content">
-                    <h3>See all your forms, or <a href="/<%= user.username %>/dashboard/forms/new">Create one</a></h3>
-                    <br>
-                    <% forms.forEach((form) => { %>
-                      <p><a href="/<%= user.username %>/dashboard/forms/view/<%= form.title %>"><%= form.title%></a></p>
-                    <% }) %>
+                    <div class="page-heading">
+                      <h2>All your forms</h2>
+                      <a href="<%= createLink %> " class="button btn-icon btn-create btn-main">
+                        <span class="material-symbols-outlined icon">add</span>
+                        <span class="btn-text">Create</span>
+                    </a>
+                    </div>
+                    <div class="table gap">
+                        <div class="row table-heading">
+                          <div class="row-column fifth-width">
+                            <span>Form title</span>
+                          </div>
+                          <div class="row-column fifth-width">
+                            <span>Created at</span>
+                          </div>
+                          <div class="row-column fifth-width">
+                            <span></span>
+                          </div>
+                        </div>
+                        <% forms.forEach(form => { %>
+                          <div class="row row-caption">
+                            <div class="row-column fifth-width">
+                              <span><%= form.title %></span>
+                            </div>
+                            <div class="row-column fifth-width">
+                              <span><%= form.createdAt.toLocaleDateString() %></span>
+                            </div>
+                            <div class="row-column">
+                              <a href="/<%= user.username %>/dashboard/forms/view/<%= form.title %>" class="button btn-icon btn-small">
+                                <span class="material-symbols-outlined">
+                                  arrow_right
+                                </span>
+                                <span class="btn-text">View form</span>
+                              </a>
+                            </div>
+                          </div>
+                        <% }); %>
+                    </div>
                   </div>
                 </div>
               </div>

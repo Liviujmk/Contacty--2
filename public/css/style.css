@@ -3,6 +3,7 @@
 
 :root {
   --main-bgColor: #8d8f91;
+  --main-btn-bgColor: #dbe6f1;
   --second-bgColor: #b3c9e278;
   --delete-color: rgb(221, 21, 21);
   --main-textColor: #646a6e;
@@ -47,12 +48,39 @@ button {
   border: 1px solid var(--medium-border);
   text-decoration: none;
   color: var(--main-textColor);
+  transition: all .25s ease-in;
 }
+.button:not(.btn-main):hover {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 0px 3px #b2c4d6; 
+  box-shadow: 0px 0px 0px 3px #b1c1d3;
+}
+
 .btn-small {
   padding: .25rem .5rem;
 }
 .btn-icon {
   display: flex;
+}
+
+.btn-main {
+  background-color: var(--main-btn-bgColor);
+  border: none;
+  transition: all .25s ease-in;
+}
+.btn-main:hover {
+  background-color: #c9d9e9;
+}
+.btn-main:focus {
+  /*background-color: #b9cadb;*/
+  outline: none;
+  -webkit-box-shadow: 0px 0px 0px 3px #839fbd; 
+  box-shadow: 0px 0px 0px 3px #839fbd;
+}
+
+a.btn-main span{
+  color: #185294;
+  font-weight: 500;
 }
 
 .btn-delete{
@@ -63,6 +91,24 @@ button {
 
 span {
   color: #505050;
+}
+span[title]{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+span[title]:hover::after{
+  transition: all .3s ease-in-out;
+  content: attr(title);
+  position: absolute;
+  width: 100px;
+  bottom: -100%;
+  left: 0;
+  font-size: 11px;
+  background: var(--second-bgColor);
+  padding: 5px;
+  border-radius: 2px;
 }
 span.icon {
   margin-right: 0.5rem;
@@ -81,6 +127,64 @@ span.btn-text {
   font-size: 2.5rem;
   line-height: 3.798rem;
   margin-bottom: 2rem;
+}
+
+.home-section._404 .hd-1{
+  margin-top: -2rem;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+img.img_404 {
+  margin-bottom: 0;
+  height: 27rem;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
+form {
+  display: block;
+}
+
+form > * {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
+}
+
+input {
+  font-size: 16px;
+  font-size: max(16px, 1em);
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #fff;
+  border: 1px solid #c5c5c5;
+  border-radius: 4px;
+  transition: 180ms ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 0px 3px #cecece; 
+  box-shadow: 0px 0px 0px 3px #cecece;
 }
 
 .sub-heading {
@@ -127,9 +231,8 @@ span.btn-text {
   transition: all 0.5s ease;
 }
 .sidebar .logo-details .logo_name{
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
+  color: rgb(31, 27, 27);
+  font-weight: 500;
   opacity: 0;
   transition: all 0.5s ease;
 }
@@ -412,6 +515,7 @@ span.btn-text {
 .home-section._404{
   left: 0;
   width: 100%;
+  padding: 0;
 }
 
 .container {
@@ -427,6 +531,14 @@ span.btn-text {
   justify-content: center;
   margin: 0;
 }
+
+.page-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .blank-border {
   border: 0.8px solid var(--light-border);
 }
@@ -444,6 +556,9 @@ span.btn-text {
 }
 .container-content > * {
   margin-bottom: 2rem;
+}
+.container-content .hd-1:not(.main-title) {
+  text-align: center;
 }
 .content-grid {
   margin: 1rem;
@@ -472,6 +587,15 @@ span.btn-text {
   border-radius: .5rem;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+}
+
+.table.gap .row {
+  justify-content: unset;
+  gap: 20%;
+}
+
+.table.customers .row {
+  justify-content: space-around;
 }
 
 .row-column {
