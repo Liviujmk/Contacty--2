@@ -94,11 +94,23 @@ label {
 
 .container {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 5em;
 }
 
-.container-item {
+.container.column {
+    flex-direction: column;
+}
+
+.container.row {
+    flex-direction: row;
+}
+
+.r-center {
+    justify-content: center;
+}
+
+.container.column .container-item {
     margin-bottom: 2em;
 }
 .container-item.heading {
@@ -107,6 +119,67 @@ label {
 .container-item.forms {
     width: 29%;
 }
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    background-color: #f5f2ea;
+    border-radius: 1rem;
+}
+
+.heading-label {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.price-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.dolar {
+    color: #d3dde7;
+}
+
+.price-label {
+    margin-bottom: 1.75rem;
+}
+
+.price {
+    margin-right: .5rem;
+}
+
+.description-label {
+    color: #bbbbbb;
+    margin-top: .8rem;
+}
+
+.text--icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+.icon {
+    display: flex;
+}
+.icon img{
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+}
+
+.text--icon span {
+    padding-left: 0.5rem;
+    font-size: .85rem;
+    color: #989da3;
+    font-weight: 400;
+}
+
 .forms > *{
     margin-bottom: 1em;
 }
@@ -143,7 +216,7 @@ label {
     outline: none;
     background: #fdc886;
 }
-.button:hover, .button:focus, input.btn-submit:hover, input:focus {
+.button:hover, .button:focus, input.btn-submit:hover, input:not:focus {
     outline: none;
     -webkit-box-shadow: 0px 0px 0px 3px #dda969; 
     box-shadow: 0px 0px 0px 3px #dda969;

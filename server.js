@@ -50,7 +50,7 @@ app.use('/public', express.static('public'))
 
 const conn = process.env.DB_STRING;
 mongoose.connect(conn, {useNewUrlParser: true, useUnifiedTopology: true})
-    .then( () =>console.log('DB Ok'))
+    .then( () =>console.log('DB has connected'))
     .catch(err => console.log(err))
 
 
