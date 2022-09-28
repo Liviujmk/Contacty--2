@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
+@import url('/node_modules/font-awesome/css/font-awesome.min.css');
+
+
 .material-symbols-outlined {
     font-variation-settings:
     'FILL' 0,
@@ -12,7 +15,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins" , sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 html {
@@ -23,26 +26,60 @@ body {
     background-color: #fff;
 }
 
+header, footer {
+    margin-inline: 3em;
+}
+
 section {
-    padding-block: 5em;
+    padding-block: 3em;
 }
 section.section-hero{
-    margin: 1em;
+    margin: 3em;
     background-color: #f5f2ea;
     border-radius: 0.5em;
+    padding: 5rem;
+}
+
+section.image-mockup{
+    margin-top: -8.4rem;
+}
+
+section.has-background {
+    margin: 3em;
+    border-radius: 0.5em;
+}
+
+.bg-1 {
+    background-color: #f5f2ea;
+}
+
+a {
+    text-decoration: none;
+    color: #6d6d6d;
+    font-weight: 400;
 }
 
 h1 {
     font-size: 3.5em;
-    font-weight: 600;
+    font-weight: 800;
     text-align: center;
-
+}
+@media screen and (max-width: 420px) {
+    h1 {
+        font-size: 3rem;
+    }
 }
 
 h3 {
     font-size: 2.45em;
     font-weight: 600;
     text-align: center;
+}
+
+h4 {
+    color: #6d6d6d;
+    font-size: 1.3rem;
+    font-weight: 400;
 }
 
 form {
@@ -95,42 +132,91 @@ label {
 .container {
     display: flex;
     align-items: center;
-    gap: 5em;
 }
 
 .container.column {
     flex-direction: column;
+    gap: 1rem;
 }
 
 .container.row {
     flex-direction: row;
+    gap: 5rem;
+}
+
+@media screen and (max-width: 700px) {
+    .container.row {
+        flex-direction: column;
+        gap: 3rem;
+    }
 }
 
 .r-center {
     justify-content: center;
 }
 
+.r-space-between {
+    justify-content: space-between;
+}
+
 .container.column .container-item {
     margin-bottom: 2em;
 }
-.container-item.heading {
-    width: 70%;
+
+
+@media screen and (min-width: 750px) {
+    .container-item.heading {
+        width: 70%;
+    }    
 }
-.container-item.forms {
-    width: 29%;
+
+.image-container {
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
 }
+
+.image-container img{
+    display: block;
+    width: 90%;
+    height: 100%;
+    border-radius: 0.6rem;
+    box-shadow: 0 0 0.3125rem #6066660d, 0 0.0625rem 0.125rem #8e8e8e26;
+    border: 1px solid #e7e7e7;
+}
+
+.headings {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.headings h3, .heading-title {
+    margin-bottom: 1.4rem
+}
+.heading-title {
+    font-weight: 800;
+    font-size: 2.3rem;
+}
+
+h4:not(.price), .sub-heading:not(.price) {
+    color: #6d6d6d;
+    font-size: 1.3rem;
+    font-weight: 400;
+    max-width: 15em;
+}
+
 
 .card {
     display: flex;
     flex-direction: column;
     padding: 2.5rem;
-    background-color: #f5f2ea;
+    background-color: #fafafa;
     border-radius: 1rem;
 }
 
 .heading-label {
     font-weight: 600;
-    font-size: 1.05rem;
+    font-size: 1.5rem;
 }
 
 .price-label {
@@ -180,8 +266,16 @@ label {
     font-weight: 400;
 }
 
+.card-detail {
+    padding-top: .5rem;
+    font-size: .85rem;
+    color: #989da3;
+    font-weight: 300;
+}
+
 .forms > *{
-    margin-bottom: 1em;
+    margin-bottom: 2em;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container-item.button-group {
@@ -194,12 +288,13 @@ label {
 .button {
     text-decoration: none;
     padding: .8em 2em;
-    background: #fdc886;
+    background: #ffffff;
     color: rgb(26, 24, 24);
     border-radius: .3em;
     transition: all .3s ease-in-out;
     border: none;
-    font-weight: 500
+    font-weight: 700;
+    text-align: center;
 }
 
 .btn-main {
@@ -207,7 +302,7 @@ label {
     color: rgb(26, 24, 24);
     transition: all .3s ease-in-out;
     border: none;
-    font-weight: 500;
+    font-weight: 700;
     cursor: pointer;
 }
 
@@ -216,7 +311,7 @@ label {
     outline: none;
     background: #fdc886;
 }
-.button:hover, .button:focus, input.btn-submit:hover, input:not:focus {
+.button:hover, .button:focus, input.btn-submit:hover, input:focus {
     outline: none;
     -webkit-box-shadow: 0px 0px 0px 3px #dda969; 
     box-shadow: 0px 0px 0px 3px #dda969;
@@ -225,4 +320,89 @@ label {
     outline: none;
     -webkit-box-shadow: 0px 0px 0px 3px #c2945c; 
     box-shadow: 0px 0px 0px 3px #c2945c;
+}
+
+
+
+
+
+/* -----------HEADER----------*/
+
+header {
+    background-color: rgb(27, 36, 92);
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-block: 0.8em;
+    position: sticky;
+    top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-item {
+    display: flex;
+}
+
+.nav-links {
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    padding: .25rem .5rem;
+    color: #ffffffd9;
+    transition: all .3s ease-in-out;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+.logo h3{
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: #fff;
+}
+
+/* ---------FOOTER--------*/
+
+footer {
+    background-color: rgb(27, 36, 92);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+footer .container-item {
+    padding: 1.5rem;
+    display: flex;
+    gap: .85rem;
+    flex-direction: column;
+    color: #fff;
+}
+
+footer .aboutCom-row {
+    margin-inline: 1.5rem;
+    border-top: 1px solid #ffffff1f;
+}
+
+footer .aboutCom {
+    padding: 0;
+    padding-block: 1.5rem
+}
+
+footer .container-item a{
+    color: #fff;
 }

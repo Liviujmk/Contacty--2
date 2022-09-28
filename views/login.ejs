@@ -5,16 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <script src="/public/js/mainSite.js"></script>
 </head>
 <body>
-    <h1>Login Page</h1>
-    <form method="POST" action="/login">
-        Enter Username:<br>
-        <input type="text" name="username">
-        <br>Enter Password:<br>
-        <input type="password" name="password">
-        <br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <section class="section-forms">
+        <div class="grid">
+            <div class="container column">
+                <div class="container-item forms">
+                    <div class="headings">
+                        <h3 class="heading-title">Login</h3>
+                        <h4 class="sub-heading">Welcome back! Enter in your dashboard</h4>
+                    </div>
+                    <form action="/login" method="post" name="form">
+                        <input type="email" name="username" placeholder="Enter email" required>
+                        <input type="password" name="password" placeholder="Enter password" required>
+                        <input type="submit" class="btn-submit btn-main" value="Log in">
+                    </form>
+                    <span class="card-detail">Don't have an account? <a href="/register">Register</a></span>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

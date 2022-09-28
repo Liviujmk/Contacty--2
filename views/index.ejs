@@ -6,8 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login syst</title>
     <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navigation">
+            <div class="nav-item logo">
+                <a href="/">
+                    <h3>Contacty</h3>
+                </a>
+            </div>
+            <div class="nav-item nav-links">
+                <a href="/">Home</a>
+                <a href="#">Services</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="nav-item">
+                <a href="/login" class="button">Log in</a>
+            </div>
+        </nav>
+    </header>
     <main id="homePage">
         <section class="section-hero">
             <div class="grid">
@@ -16,46 +39,43 @@
                         <h1>Collect form submission in just a few seconds</h1>
                     </div>
                     <div class="container-item button-group">
-                        <a href="#reg" class="button btn-main">Register</a>
+                        <a href="/register" class="button btn-main">Register</a>
                         <span>or</span>
-                        <a href="#logIn" class="button btn-main">Log In</a>
+                        <a href="/login" class="button btn-main">Log In</a>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="section-forms">
+        <section class="image-mockup">
             <div class="grid">
-                <div class="container column">
-                    <div class="container-item forms">
-                        <h3 id="#reg">Register</h3>
-                        <form action="" method="post">
-                            <input type="text" name="companyName" placeholder="Enter company name">
-                            <input type="text" name="username" placeholder="Enter an username">
-                            <input type="email" name="email" placeholder="Enter email">
-                            <input type="password" name="password" placeholder="Enter password">
-                            <input type="submit" class="btn-submit btn-main" value="Register">
-                        </form>
-                    </div>
-                    <div class="container-item forms">
-                        <h3 id="logIn">Login</h3>
-                        <form action="/login" method="post">
-                            <input type="email" name="username" placeholder="Enter email">
-                            <input type="password" name="password" placeholder="Enter password">
-                            <input type="submit" class="btn-submit btn-main" value="Log in">
-                        </form>
+                <div class="image-container">
+                    <img src="/public/images/dashboard.png" alt="Dashboard sample">
+                </div>
+            </div>
+        </section>
+        <section class="section-services">
+            <div class="grid">
+                <div class="services">
+                    <div class="service">
+                        <div class="service-text-item">Services text</div>
+                        <div class="service-capture-item">Image</div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="section-pricing">
+        <section id="pricing" class="section-pricing has-background bg-1">
             <div class="grid">
+                <div class="headings">
+                    <h3 class="heading-title">Pricing</h3>
+                    <h4 class="sub-heading price">Choose the plan that fits your needs</h4>
+                </div>
                 <div class="container row r-center">
                     <div class="container-item">
                         <div class="card">
                             <span class="heading-label">Basic</span>
                             <div class="price-label">
                                 <h3 class="dolar">$</h3>
-                                <h3 class="price">18</h3>
+                                <h3 class="price">10.99</h3>
                                 <p class="description-label">/ month</p>
                             </div>
                             <div class="container column">
@@ -70,7 +90,7 @@
                                         <div class="icon">
                                             <img src="/public/images/check.png" alt="">
                                         </div>
-                                        <span class="plan-detail">Up to 100 messages</span>
+                                        <span class="plan-detail">Up to 50 messages</span>
                                     </div>
                                     <div class="text--icon">
                                         <div class="icon">
@@ -80,15 +100,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="" class="button">Start free trial</a>
+                            <a href="/register" class="button btn-main">Start free trial</a>
+                            <span class="card-detail">* No credit card required</span>
                         </div>
                     </div>
                     <div class="container-item">
                         <div class="card">
-                            <span class="heading-label">Basic</span>
+                            <span class="heading-label">Plus</span>
                             <div class="price-label">
                                 <h3 class="dolar">$</h3>
-                                <h3 class="price">18</h3>
+                                <h3 class="price">20.99</h3>
                                 <p class="description-label">/ month</p>
                             </div>
                             <div class="container column">
@@ -113,12 +134,54 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="" class="button">Start free trial</a>
+                            <a href="/register" class="button btn-main">Start free trial</a>
+                            <span class="card-detail">* No credit card required</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <footer>
+            <div class="grid">
+               <div class="container row r-space-between">
+                <div class="container-item">
+                    <div class="heading-label">Company</div>
+                    <a href="#">Home</a>
+                    <a href="#">Services</a>
+                    <a href="#">Projects</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="container-item">
+                    <div class="heading-label">Company</div>
+                    <a href="#">Home</a>
+                    <a href="#">Services</a>
+                    <a href="#">Projects</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="container-item">
+                    <div class="heading-label">Company</div>
+                    <a href="#">Home</a>
+                    <a href="#">Services</a>
+                    <a href="#">Projects</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Contact</a>
+                </div>
+               </div>
+               <div class="container row aboutCom-row">
+                    <div class="container-item aboutCom">
+                        <p>
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            Contacty, LLC. All rigths reserved
+                        </p>
+                    </div>
+               </div>
+            </div>
+        </footer>
     </main>
 </body>
 </html>

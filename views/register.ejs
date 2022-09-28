@@ -5,16 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <script src="/public/js/mainSite.js"></script>
 </head>
 <body>
-    <h1>Register Page</h1>
-    <form method="POST" action="/register">
-        Enter Username:<br>
-        <input type="text" name="username">
-        <br>Enter Password:<br>
-        <input type="password" name="password">
-        <br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <section class="section-forms">
+        <div class="grid">
+            <div class="container column">
+                <div class="container-item forms">
+                    <div class="headings">
+                        <h3 class="heading-title">Register</h3>
+                        <h4 class="sub-heading">Start collecting form's messages and customers wherever you are.</h4>
+                    </div>
+                    <form action="/register" method="post" name="form">
+                        <input type="text" name="companyName" placeholder="Enter your company name">
+                        <input type="text" name="username" placeholder="Enter an username"required>
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                        <input type="password" name="password" placeholder="Enter password" required>
+                        <div class="validations">
+                            <p id="capital">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <i class="fa-solid fa-check"></i>
+                                <span>Capital letters</span>
+                            </p>
+                            <p id="char">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <i class="fa-solid fa-check"></i>
+                                <span>Special characters</span>
+                            </p>
+                            <p id="num">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <i class="fa-solid fa-check"></i>
+                                <span>Using numbers</span>
+                            </p>
+                            <p id="more8">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                                <i class="fa-solid fa-check"></i>
+                                <span>8+ characters</span>
+                            </p>
+                        </div>
+                        <input type="submit" class="btn-submit btn-main" value="Register">
+                    </form>
+                    <span class="card-detail">Already have an account? <a href="/login">Login</a></span>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

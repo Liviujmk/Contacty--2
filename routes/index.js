@@ -87,7 +87,7 @@ router.get('/:username/dashboard', async(req, res, next) => {
     // This is how you check if a user is authenticated and protect a route.  You could turn this into a custom middleware to make it less redundant
     const userParam = await User.findOne({'username': req.params.username})
     console.log(userParam);
-    if(!userParam) {res.redirect('/register')}
+    if(!    userParam) {res.redirect('/register')}
     else {
         if (req.isAuthenticated() && (req.params.username === req.user.username )) {
         
