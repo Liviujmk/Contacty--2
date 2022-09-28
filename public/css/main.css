@@ -11,11 +11,15 @@
     'opsz' 48
 }
 
+:root {
+    --bg-1: #201f15;
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 html {
@@ -28,6 +32,7 @@ body {
 
 header, footer {
     margin-inline: 3em;
+    background-color: var(--bg-1);
 }
 
 section {
@@ -53,6 +58,10 @@ section.has-background {
     background-color: #f5f2ea;
 }
 
+img {
+    width: 100%;
+}
+
 a {
     text-decoration: none;
     color: #6d6d6d;
@@ -61,7 +70,7 @@ a {
 
 h1 {
     font-size: 3.5em;
-    font-weight: 800;
+    font-weight: 700;
     text-align: center;
 }
 @media screen and (max-width: 420px) {
@@ -72,7 +81,7 @@ h1 {
 
 h3 {
     font-size: 2.45em;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
 }
 
@@ -108,7 +117,7 @@ input {
 input::placeholder {
     color: #bbbbbb;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 label {
@@ -194,7 +203,7 @@ label {
     margin-bottom: 1.4rem
 }
 .heading-title {
-    font-weight: 800;
+    font-weight: 700;
     font-size: 2.3rem;
 }
 
@@ -215,7 +224,7 @@ h4:not(.price), .sub-heading:not(.price) {
 }
 
 .heading-label {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1.5rem;
 }
 
@@ -270,10 +279,10 @@ h4:not(.price), .sub-heading:not(.price) {
     padding-top: .5rem;
     font-size: .85rem;
     color: #989da3;
-    font-weight: 300;
+    font-weight: 200;
 }
 
-.forms > *{
+.forms > * {
     margin-bottom: 2em;
     font-family: 'Poppins', sans-serif;
 }
@@ -293,7 +302,7 @@ h4:not(.price), .sub-heading:not(.price) {
     border-radius: .3em;
     transition: all .3s ease-in-out;
     border: none;
-    font-weight: 700;
+    font-weight: 500;
     text-align: center;
 }
 
@@ -302,7 +311,7 @@ h4:not(.price), .sub-heading:not(.price) {
     color: rgb(26, 24, 24);
     transition: all .3s ease-in-out;
     border: none;
-    font-weight: 700;
+    font-weight: 500;
     cursor: pointer;
 }
 
@@ -329,7 +338,6 @@ h4:not(.price), .sub-heading:not(.price) {
 /* -----------HEADER----------*/
 
 header {
-    background-color: rgb(27, 36, 92);
     padding-left: 3em;
     padding-right: 3em;
     padding-block: 0.8em;
@@ -360,7 +368,7 @@ header {
     padding: .25rem .5rem;
     color: #ffffffd9;
     transition: all .3s ease-in-out;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1rem;
 }
 
@@ -378,7 +386,6 @@ header {
 /* ---------FOOTER--------*/
 
 footer {
-    background-color: rgb(27, 36, 92);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 0;
@@ -406,3 +413,76 @@ footer .aboutCom {
 footer .container-item a{
     color: #fff;
 }
+
+/* --------- Services ------------*/
+
+.section-heading {
+    margin-bottom: 5.2rem;
+}
+
+.sh-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sh-box h3 {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.hd-tag {
+    font-weight: 500;
+    color: #aca039;
+
+}
+
+.services {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 1.5rem;
+    gap: 4.5rem;
+}
+
+.service {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.service.row {
+    flex-direction: row;
+    gap: 2.4rem;
+}
+
+.service.row-reverse {
+    flex-direction: row-reverse;
+    gap: 1.85rem;
+}
+
+.service-text-item {
+    width: 90%;
+}
+
+.service.row-reverse .service-text-item {
+    width: 100%;
+}
+
+.service img {
+    border: 1px solid rgb(236, 236, 236);
+    border-radius: 5px;
+}
+
+.service h3 {
+    text-align: left;
+    font-size: 2.6rem;
+    line-height: 3.2rem;
+    margin-bottom: 1rem;
+    color: #3f390c;
+}
+
+.service p {
+    font-size: 1rem;
+    color: #868686;
+}
+
