@@ -40,6 +40,7 @@ a {
 button {
   cursor: pointer;
   background: none;
+  width: min-content;
 }
 
 .button {
@@ -49,6 +50,7 @@ button {
   text-decoration: none;
   color: var(--main-textColor);
   transition: all .25s ease-in;
+  width: min-content;
 }
 .button:not(.btn-main):hover {
   outline: none;
@@ -123,10 +125,11 @@ span.btn-text {
 }
 
 .hd-1{
+  color: #202e3a;
   font-weight: 500;
   font-size: 2.5rem;
   line-height: 3.798rem;
-  margin-bottom: 2rem;
+  margin-bottom: .4rem !important;
 }
 
 .home-section._404 .hd-1{
@@ -188,8 +191,9 @@ input:focus {
 }
 
 .sub-heading {
-  font-size: 0.795rem;
+  font-size: 0.92rem;
   color: #7c7c7c;
+  margin-bottom: 1.25rem;
 }
 
 .overflow-y--scroll {
@@ -218,7 +222,7 @@ input:focus {
   box-sizing: border-box;
 }
 .sidebar.open{
-  width: 250px;
+  width: 275px;
 }
 .sidebar .logo-details{
   height: 60px;
@@ -458,8 +462,8 @@ input:focus {
 }
 
 .sidebar.open ~ .home-section{
-  left: 250px;
-  width: calc(100% - 250px);
+  left: 275px;
+  width: calc(100% - 275px);
 }
 
 .full-width {
@@ -537,6 +541,7 @@ input:focus {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1.5rem;
 }
 
 .blank-border {
@@ -553,10 +558,10 @@ input:focus {
 .container-content {
   display: flex;
   flex-direction: column;
-}
+}/*
 .container-content > * {
   margin-bottom: 2rem;
-}
+}*/
 .container-content .hd-1:not(.main-title) {
   text-align: center;
 }
@@ -564,8 +569,45 @@ input:focus {
   margin: 1rem;
 }
 
+.flex-content {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.fc-item {
+  display: flex;
+}
+
+.small-card {
+  padding: 1rem 1.5rem;
+  background-color: #8394a3a2;
+  border-radius: .5rem;
+  flex-direction: column;
+}
+
+.card-heading {
+  margin-bottom: 1.2rem;
+}
+
+.card-heading h4 {
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.number {
+  color: #37281a;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
 .blank-content {
   align-items: center;
+}
+
+.blank-content .button {
+  margin-top: 1rem;
+  width: auto;
 }
 
 .col-2-3 {

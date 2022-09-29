@@ -18,12 +18,36 @@
                   <div class="container-content">
                     <h1 class="hd-1 main-title">Welcome back, Liviu!</h1>
                     <p class="sub-heading col-2-3">You can start by creating the best messages for your hotel, restaurant or anything like this. Keep up with latest trends</p>
-                    <a href="/<%= user.username %>/dashboard/forms">Forms</a>
-                    <br>
-                    <a href="/<%= user.username %>/settings/plans">See plans</a>
-                    <br>
-                    <p id="q1"><%= freeTrialEndDate %></p>
+                    <a href="" class="button btn-icon btn-create btn-main">
+                      <span class="material-symbols-outlined icon">add</span>
+                      <span class="btn-text">Create</span>
+                    </a>
                   </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="container-grid">
+                  <div class="flex-content">
+                    <div class="fc-item small-card">
+                      <div class="card-heading">
+                        <h4>Forms</h4>
+                      </div>
+                      <div class="card-content">
+                        <span class="number"><%= user.forms.length %></span>
+                      </div>
+                      <a href="/<%= user.username %>/dashboard/forms">See all forms</a>
+                    </div>
+                    <div class="fc-item small-card">
+                      <div class="card-heading"><h4>Pricing</h4></div>
+                      <a href="/<%= user.username %>/settings/plans">See plans</a>
+                    </div>
+                    <div class="fc-item small-card">
+                      <div class="card-heading"><h4>Free trial</h4></div>
+                      <p id="q1"><%= freeTrialEndDate %></p>
+                    </div>
+                  </div>
+                  <br>
+                  <br>
                 </div>
               </div>
             </div>
