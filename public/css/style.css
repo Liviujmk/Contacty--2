@@ -571,32 +571,49 @@ input:focus {
 
 .flex-content {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
+  justify-content: space-between;
   gap: 2rem;
 }
 
 .fc-item {
   display: flex;
+  flex: auto;
+}
+
+.fc-item.pricing {
+  justify-content: space-between;
 }
 
 .small-card {
   padding: 1rem 1.5rem;
-  background-color: #8394a3a2;
+  background-color: rgb(54, 110, 163);
+  color: #f7f7f7;
   border-radius: .5rem;
   flex-direction: column;
 }
 
 .card-heading {
-  margin-bottom: 1.2rem;
+  margin-bottom: .2rem;
 }
 
 .card-heading h4 {
-  font-size: 1.45rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
+.card-content {
+  margin-bottom: 1rem;
+}
+
+.small-card .button {
+  width: fit-content;
+  width: -moz-fit-content;
+}
+
 .number {
-  color: #37281a;
+  color: #ffffff;
   font-size: 2.4rem;
   font-weight: 600;
 }

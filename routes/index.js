@@ -107,9 +107,19 @@ router.get('/:username/dashboard', async(req, res, next) => {
                     await user.updateOne({_id: user._id}, {$set: {trial: {status: "expired"}}})
             }
             console.log((trial.end.getTime() - cd.getTime()) / one_day);
+
+            /* --- get all messages --- */
+            const forms = user.forms
+            const allMessages = []
+            forms.forEach(form => {
+                form.messages.forEach(message => {
+                    allMessages.push(message)
+                })
+            })
             res.render('dashboard',{
                 user: user,
-                freeTrialEndDate: freeTrialEndDate
+                freeTrialEndDate,
+                allMessages
             });
         } else {
             res.send('<h1>You are not authenticated</h1><p><a href="/login">Login</a></p>');

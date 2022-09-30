@@ -26,7 +26,6 @@
                 </div>
               </div>
               <div class="container">
-                <div class="container-grid">
                   <div class="flex-content">
                     <div class="fc-item small-card">
                       <div class="card-heading">
@@ -35,20 +34,31 @@
                       <div class="card-content">
                         <span class="number"><%= user.forms.length %></span>
                       </div>
-                      <a href="/<%= user.username %>/dashboard/forms">See all forms</a>
+                      <a class="button btn-main" href="/<%= user.username %>/dashboard/forms">
+                        <span class="btn-text">See all forms ></span>
+                      </a>
                     </div>
                     <div class="fc-item small-card">
+                      <div class="card-heading">
+                        <h4>Messages</h4>
+                      </div>
+                      <div class="card-content">
+                        <span class="number"><%= allMessages.length %></span>
+                      </div>
+                      <a class="button btn-main" href="/<%= user.username %>/dashboard/messages">
+                        <span class="btn-text">See all messages></span>
+                      </a>
+                    </div>
+                    <div class="fc-item small-card pricing">
                       <div class="card-heading"><h4>Pricing</h4></div>
-                      <a href="/<%= user.username %>/settings/plans">See plans</a>
-                    </div>
-                    <div class="fc-item small-card">
-                      <div class="card-heading"><h4>Free trial</h4></div>
-                      <p id="q1"><%= freeTrialEndDate %></p>
+                      <div class="card-content">
+                        <span class="number">$10.99</span>
+                      </div>
+                      <a class="button btn-main" href="/<%= user.username %>/settings/plans">
+                        <span class="btn-text">See plans ></span>
+                      </a>
                     </div>
                   </div>
-                  <br>
-                  <br>
-                </div>
               </div>
             </div>
           </div>

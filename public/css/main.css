@@ -441,7 +441,7 @@ footer .container-item a{
     display: flex;
     flex-direction: column;
     padding-inline: 1.5rem;
-    gap: 4.5rem;
+    gap: 7rem;
 }
 
 .service {
